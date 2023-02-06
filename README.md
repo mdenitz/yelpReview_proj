@@ -49,3 +49,14 @@ After that, I would perform sentiment analysis on the reviews using natural lang
 ```Interesting note: could add an option to check for “deal breakers”. For instance if cleanliness is often negatively reviewed then that’s a deal breaker.```
 
 
+# Progress Updates
+## Review Scraping:
+I decided to go with scrapy it was reviewed as the more robust and up to date web scraping tool.
+
+One if not the most key elements when web scraping is trying to identify a consistent website structure so that we can programmatically scrape the site. 
+In the case of yelp, based on my research it seems like it was a bit more easier in the past (~2018) to scrape.
+Reviews used to have a pretty simple “review” class name along with authors of the reviews while currently reviews look a little more complicated.
+So far not impossible.
+
+
+  
