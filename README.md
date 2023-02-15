@@ -58,5 +58,22 @@ In the case of yelp, based on my research it seems like it was a bit more easier
 Reviews used to have a pretty simple “review” class name along with authors of the reviews while currently reviews look a little more complicated.
 So far not impossible.
 
+It is important that we query the reviews ordered by most recent reviews first (descending). This will ensure stable/consistent results.
+This can be done by appending the sort_by=date_desc query to our url.
+##### The following are selectors I generated to gather the relevant review data:
 
-  
+
+* **Review Content:**  response.xpath('//div/div/ul/li/div/div/p[contains(@class, "comment__09f24__gu0rG")]/span/text()').extract()
+* **Author:** response.css('.css-ux5mu6 .css-1m051bw::text').getall()
+* **Rating:** response.xpath('//section/div/div/ul/li/div/div/div/div/span/div[contains(@role, "img")]/@aria-label').extract() 
+* **Date:** response.xpath('//div/div/ul/li/div/div/div/div/span[contains(@class, "css-chan6m")]/text()').extract()
+
+##### Now that we have collected the review data for the page we need to traverse the pages.
+Pages turn over every 10 items so we need to visit each 10 at a time.
+In order to this we will need to grab the total reviews from the page and
+traverse the pages in increments of 10.
+
+EX.  
+Page 1: https://www.yelp.com/biz/example-res?sort_by=date_desc  
+Page 2: https://www.yelp.com/biz/example-res?start=10&sort-by=date_desc
+

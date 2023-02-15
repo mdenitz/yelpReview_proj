@@ -11,3 +11,4 @@ lib
 lib64
 *.pyo
 *.pyc
+yelpReviews/*.json
