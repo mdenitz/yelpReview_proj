@@ -77,3 +77,18 @@ EX.
 Page 1: https://www.yelp.com/biz/example-res?sort_by=date_desc  
 Page 2: https://www.yelp.com/biz/example-res?start=10&sort-by=date_desc
 
+##### Pagination Implementation
+To properly traverse the review pages I decided to first collect the total
+number of reviews on the page.
+
+**Number of Reviews:** int(response.xpath('//html/body/yelp-react-root/div/div/div/div/div/div/div/div/span/a[contains(@href, "#reviews")]/text()').get().split()[0])
+
+Once we have the total number of reviews we can iterate over our reviews in
+orders of 10 since we have 10 reviews per page.
+
+
+##### Calling from comand Line
+We can call our program from the command line:  
+
+```scrapy crawl yelpReview -a start_url='https://www.yelp.com/biz/$restaraunt$' -o $file$.json```
+

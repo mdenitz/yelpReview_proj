@@ -26,18 +26,17 @@ class yelpReviewSpider(scrapy.Spider):
         # Following will query relevant data
         authors = response.css('.css-ux5mu6 .css-1m051bw::text').getall()
         content = response.xpath('//div/div/ul/li/div/div/p[contains(@class, "comment__09f24__gu0rG")]/span/text()').extract()
-        ratings = response.xpath('//section/div/div/ul/li/div/div/div/div/span/div[contains(@role, "img")]/@aria-label').extract()
+        ratings = response.xpath('//section/div/div/ul/li/div/div/div/div/span/div[contains(@role, "img")]/@aria-label').re(r'(\d+)(?=\s)')
         dates = response.xpath('//div/div/ul/li/div/div/div/div/span[contains(@class, "css-chan6m")]/text()').extract()
 
         # Build out dictionary item of Yelp Review Content
         for item in zip(authors,content,ratings, dates):
-            reviews = {
+            yield {
                     'author' : item[0],
                     'content' : item[1],
-                    'rating' : item[2],
+                    'rating' : int(item[2]),
                     'date' : item[3],
             }
-            yield reviews
 
         
         
