@@ -1,4 +1,5 @@
 .env
+env
 .installed.cfg
 bin
 develop-eggs
@@ -12,3 +13,6 @@ lib64
 *.pyo
 *.pyc
 yelpReviews/*.json
+.DS_Store
+*.json
+tester.py
