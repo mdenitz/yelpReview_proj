@@ -92,3 +92,8 @@ We can call our program from the command line:
 
 ```scrapy crawl yelpReview -a start_url='https://www.yelp.com/biz/$restaraunt$' -o $file$.json```
 
+## ToDo
+
+1. Just discovered recent bug resulting in no output generated
+2. Configure spider to feed data into sentiment analysis model
+
